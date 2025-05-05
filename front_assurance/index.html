@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>ChatBot Mix Interface</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .chat-container {
+      height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .message.user {
+      text-align: right;
+      color: #0d6efd;
+    }
+
+    .message.bot {
+      text-align: left;
+      color: #198754;
+    }
+
+    #callbackBox {
+      height: calc(100vh - 70px);
+      overflow-y: auto;
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <!-- Sidebar com lista de bots -->
+  <div class="sidebar p-3">
+    <h5>🤖 Bots</h5>
+    <ul class="list-group">
+      <li class="list-group-item active">FaleAI <span class="badge bg-success ms-2">online</span></li>
+      <li class="list-group-item">VendeAI <span class="badge bg-success ms-2">online</span></li>
+    </ul>
+  </div>
+
+  <!-- Área principal dividida 70/30 -->
+  <div class="chat-main d-flex" style="flex: 1;">
+    <!-- Chat principal (70%) -->
+    <div class="d-flex flex-column border-end" style="flex: 0 0 70%;">
+      <div class="chat-header d-flex justify-content-between align-items-center p-3 border-bottom">
+        <div>
+          <strong>FaleAI</strong><br />
+          <small>Última visualização: agora mesmo</small>
+        </div>
+        <div>
+          <input type="checkbox" id="translateToggle" />
+          <label for="translateToggle">Traduzir?</label>
+        </div>
+      </div>
+
+      <div class="chat-body flex-grow-1 p-3 overflow-auto" id="chatBox" style="height: 100%; background: #fff;"></div>
+
+      <div class="chat-footer d-flex p-2 border-top">
+        <input type="file" id="imgUpload" accept="image/*" hidden onchange="handleImageUpload()" />
+        <button class="btn btn-outline-secondary me-1" onclick="handleMic()">🎤</button>
+        <button class="btn btn-outline-secondary me-1" onclick="document.getElementById('imgUpload').click()">📷</button>
+        <input type="text" id="chatInput" class="form-control me-1" placeholder="Digite sua mensagem..." />
+        <button class="btn btn-primary" onclick="handleSend()">Enviar</button>
+      </div>
+    </div>
+
+    <!-- Callback (30%) -->
+    <div class="bg-light border-start p-2" style="flex: 0 0 30%;">
+      <h6 class="text-secondary">🧠 Callback do Agente</h6>
+      <pre id="callbackBox"></pre>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

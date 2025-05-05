@@ -1,0 +1,10 @@
+openai 
+python-dotenv 
+langchain 
+faiss-cpu 
+pandas 
+tabulate 
+langchain-openai
+fastapi==0.115.12
+uvicorn==0.34.1
+azure-storage == 0.37.0
